@@ -1,44 +1,23 @@
-import pygame
+import tkinter
 
+class Button():
 
-class Button:
+    def __init__(self, text, x, y, width, height, window) -> None:
+        self.button_frame = tkinter.Frame(window, highlightbackground="purple", highlightthickness=2)
 
-    def __init__(self, x, y, width, height, txt):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.txt = txt
-        self.isHovering = False
-        self.onClick = lambda event: print("[GUIDE] Define onClick() function")
-        self.clicked = False
+        self.button = tkinter.Button(self.button_frame, text=text, width=width, height=height)
+        self.button.configure(bg="black", fg="#ac20fd", borderwidth=0, font= ('Helvetica', 15), padx=10, pady=10)
+        self.button.bind("<Enter>", lambda e: self.button.config(bg="#ac20fd", fg="black"))
+        self.button.bind("<Leave>", lambda e: self.button.config(bg="black", fg="#ac20fd"))
+        self.button.pack()
 
-        # create a font object.
-        self.font = pygame.font.Font('freesansbold.ttf', 17)
+        self.button_frame.place(relx=x, rely=y, anchor="center")
 
-        # create a text surface object,
-        self.text = self.font.render(txt, True, (171, 32, 253))
+    def center(self):
+        self.button_frame.place(relx=0.5, rely=0.5, anchor="center")
+    
+    def alignText(self, anchor):
+        self.button.configure(anchor=anchor)
 
-        # create a rectangular object for the
-        self.textRect = self.text.get_rect()
-
-        # set the center of the rectangular object.
-        self.textRect.center = (x + (width // 2), y + (height // 2))
-
-    def setOnClick(self, onClick):
-        self.onClick = onClick
-
-    def draw(self, canvas):
-        color = (171, 32, 253)
-        if (self.isHovering): color = (255, 255, 255)
-        pygame.draw.rect(canvas, color, [self.x, self.y, self.width, self.height], 2)
-        canvas.blit(self.text, self.textRect)
-
-    def hover(self, x, y):
-        self.isHovering = ((self.x < x < self.x + self.width) and
-                           (self.y < y < self.y + self.height))
-
-    def click(self):
-        if (self.isHovering):
-            self.onClick(None)
-
+    def onClick(self, action):
+        self.button.configure(command= action)
