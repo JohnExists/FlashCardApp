@@ -50,20 +50,18 @@ class Menu:
     def launchMainMenu(self):
         self.clear()
         self.widgets["add-button"] = Button("+ Add", 0.5, 0.2, 60, 1, self.window)
-        self.widgets["add-button"].onClick(lambda: self.launchAddMenu())
+        self.widgets["add-button"].onClick(lambda: self.launchAddCardGroupMenu())
 
         def onSelect(event):
             widget = event.widget
             selection = widget.curselection()
             value = widget.get(selection[0])
-            print("selection:", selection, ": '%s'" % value)
-
+            self.launchCardGroupMenu(value)
 
         self.generateLists("all-groups-list", self.flashGroups)
         self.widgets["all-groups-list"].bind("<Double-Button-1>", onSelect)
 
-
-    def launchAddMenu(self):
+    def launchAddCardGroupMenu(self):
         self.clear()
 
         name = self.addVariable()
@@ -77,7 +75,22 @@ class Menu:
         self.widgets["submit-button"] = Button("Add Group", 0.5, 0.5, 20, 4, self.window)
         self.widgets["submit-button"].onClick(lambda: addGroup())
 
-    def launchGroupMenu(self, name):
+    def launchAddFlashCardMenu(self, cardGroupName):
+        self.clear()
+
+        front, back = self.addVariable(), self.addVariable()
+        self.generateEntry("front-entry", 0.2, front)
+        self.generateEntry("back-entry", 0.3, back)
+
+        def addFlashCard():
+            self.launchAddCardGroupMenu()
+
+        self.widgets["submit-button"] = Button("Add FlashCard", 0.5, 0.5, 30, 3, self.window)
+        self.widgets["submit-button"].onClick(lambda: addFlashCard())
+        self.widgets["back-button"] = Button("Back", 0.5, 0.7, 30, 3, self.window)
+        self.widgets["back-button"].onClick(lambda: self.launchAddCardGroupMenu())
+
+    def launchCardGroupMenu(self, name):
         self.clear()
         self.widgets["add-button"] = Button("+ Add FlashCard", 0.5, 0.2, 60, 1, self.window)
-        self.widgets["add-button"].onClick(lambda: self.launchAddMenu())
+        self.widgets["add-button"].onClick(lambda: self.launchAddFlashCardMenu(name))
