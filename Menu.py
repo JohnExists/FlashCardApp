@@ -1,13 +1,14 @@
 import tkinter
 from Button import Button
 from FlashGroup import FlashGroup
+from FileManagement import *
 
 class Menu:
     def __init__(self, window) -> None:
         self.window = window
         self.variables = []
         self.widgets = {}
-        self.flashGroups = []
+        self.flashGroups = loadData()
         self.launchMainMenu()
 
     def clear(self):
@@ -85,6 +86,7 @@ class Menu:
         def addGroup():
             if (name.get() != ""):
                 self.flashGroups.append(FlashGroup(name.get()))
+                appendFlashGroupData(name.get())
                 self.launchMainMenu()
 
         self.widgets["submit-button"] = Button("Add Group", 0.5, 0.5, 20, 4, self.window)

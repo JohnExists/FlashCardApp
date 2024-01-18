@@ -1,0 +1,17 @@
+{
+    "flashgroups": [
+        {
+            "name": "Test1",
+            "flashcards": [
+                { "front":"Front", "back":"Back", "date":"NULL"}
+            ]
+        },
+        {
+            "name": "Test2",
+            "flashcards": [
+                { "front":"Front", "back":"Back", "date":"NULL"}
+            ]
+        }
+    ]
+
+}
