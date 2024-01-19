@@ -12,6 +12,9 @@ class FlashGroup:
     def addFlashCard(self, front, back):
         self.flashCards.append(FlashCard(front, back))
 
+    def getFlashCard(self, number):
+        return self.flashCards[number]
+
     def strList(self):
         result = []
         i = 1

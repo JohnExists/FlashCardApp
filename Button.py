@@ -22,3 +22,7 @@ class Button():
 
     def onClick(self, action):
         self.button.configure(command=action)
+
+    def setText(self, newText):
+        self.button.configure(text=newText)
+        

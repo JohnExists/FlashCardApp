@@ -115,6 +115,7 @@ class Menu:
     def launchCardGroupMenu(self, flashGroup):
         self.clear()
         self.widgets["run-button"] = Button("Run Flashcards", 0.5, 0.15, 60, 1, self.window)
+        self.widgets["run-button"].onClick(lambda: self.launchFlashcardMenu(flashGroup))
 
         self.widgets["add-button"] = Button("+ Add FlashCard", 0.5, 0.8, 60, 1, self.window)
         self.widgets["add-button"].onClick(lambda: self.launchAddFlashCardMenu(flashGroup))
@@ -124,3 +125,29 @@ class Menu:
 
 
         self.generateLists("flashcard-lists", flashGroup.strList())
+
+    def launchFlashcardMenu(self, flashGroup, index = 0):
+        currentFlashCard = None
+        try:
+            if(index < 0): raise Exception
+            currentFlashCard = flashGroup.getFlashCard(index)
+        except:
+            return
+        self.clear()
+
+        currentFlashCard.sideDisplayed = 'F'
+        self.widgets["flashcard-button"] = Button(currentFlashCard.get(), 0.5, 0.3, 60, 12, self.window)
+        self.widgets["flashcard-button"].onClick(lambda: self.widgets["flashcard-button"].setText(currentFlashCard.toggle()))
+
+        self.widgets["prev-button"] = Button("Next", 0.75, 0.685, 24, 1, self.window)
+        self.widgets["prev-button"].onClick(lambda: self.launchFlashcardMenu(flashGroup, index + 1))
+
+        self.widgets["next-button"] = Button("Previous", 0.25, 0.685, 24, 1, self.window)
+        self.widgets["next-button"].onClick(lambda: self.launchFlashcardMenu(flashGroup, index - 1))
+
+
+        self.widgets["knowledge-level-button"] = Button(currentFlashCard.getStatus(), 0.5, 0.8, 60, 1, self.window)
+        self.widgets["knowledge-level-button"].onClick(lambda: self.widgets["knowledge-level-button"].setText(currentFlashCard.toggleStatus()))
+        
+        self.widgets["back-button"] = Button("Back To Flash Group Menu", 0.5, 0.9125, 60, 1, self.window)
+        self.widgets["back-button"].onClick(lambda: self.launchCardGroupMenu(flashGroup))
