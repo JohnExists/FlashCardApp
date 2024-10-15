@@ -1,0 +1,11 @@
+Issues:
+    - Ugly white scrollbar
+    
+Solved Issues:
+    - Double click to change flashcard 
+    side / knowledge status, should be 
+    single click
+    - No delete/edit flashcard option
+    -  data.json doesn't get updated
+    - knowledge status needs to be added
+    to data.json

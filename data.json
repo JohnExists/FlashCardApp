@@ -1,0 +1,38 @@
+{
+    "flashgroups": [
+        {
+            "name": "Science And Math",
+            "flashcards": [
+                {
+                    "front": "Mitochondria is the powerhouse of the cell; true or false?",
+                    "back": "True",
+                    "knowledge": "Known",
+                    "date": 1720000009
+                },
+                {
+                    "front": "What is Newton's third law?",
+                    "back": "Every action has an equal and opposite reaction",
+                    "knowledge": "Semi-Known",
+                    "date": 1720000000
+                },
+                {
+                    "front": "What is the formula for the Quotient Rule h(x) = f(x)/g(x)",
+                    "back": "( f(x)g'(x) - f'(x)g(x) )/ ( g(x)^2 )",
+                    "knowledge": "Semi-Known",
+                    "date": 1720000001
+                }
+            ]
+        },
+        {
+            "name": "Test",
+            "flashcards": [
+                {
+                    "front": "Front",
+                    "back": "Back",
+                    "knowledge": "Unknown",
+                    "date": 0
+                }
+            ]
+        }
+    ]
+}
